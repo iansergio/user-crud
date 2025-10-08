@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    working_dir: /app
+    command: >
+      sh -c "npx prisma generate && pnpm run dev"
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: frontend
+  #   ports:
+  #     - '3001:3001'
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   working_dir: /app
+    # command: pnpm run dev
